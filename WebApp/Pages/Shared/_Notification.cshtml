@@ -1,0 +1,34 @@
+﻿@using WebApp.Models.ViewModels;
+
+@{
+    var Notification = (Notification)ViewData["Notification"];
+}
+
+@if (Notification != null)
+{
+    var notificationClass = "";
+
+    switch(Notification.Type)
+    {
+        case Enums.NotificationType.Success:
+            notificationClass = "alert-success";
+            break;
+        case Enums.NotificationType.Error:
+            notificationClass = "alert-danger";
+            break;
+        case Enums.NotificationType.Info:
+            notificationClass = "alert-secondary";
+            break;
+        default:
+            notificationClass = "";
+         break;
+    }
+
+          
+    <div class="container mb-5">
+        <div class="alert @notificationClass alert-dismissible fade show mb-5" role="alert">
+            @Html.Raw(Notification.Message)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}

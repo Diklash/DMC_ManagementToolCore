@@ -1,0 +1,166 @@
+﻿@page
+@model WebApp.Pages.Employee.ListModel
+@{
+}
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> @* bg-secondary = this is color of the title, dark
+                                            bg-opacity-10 = this cuase it to bee more light
+                                            mb-2 = margin buttom - to have space on bottom of the div
+                                            *@
+ <div class="container">
+        <h1>View All</h1>
+    </div>
+</div>
+
+<partial name="_Notification"></partial>
+
+@if(Model.EmployeeList != null && Model.EmployeeList.Any())
+{
+    <div class="container">
+
+        <div class="mb-3 d-flex justify-content-end">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addEmployee">
+              Add
+            </button>
+         </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    EmployeeID
+                </td>
+                <td>
+                    FirstName
+                </td>
+                <td>
+                   LastName
+                </td>
+                <td>
+                   PhoneNumber
+                </td>
+                <td>
+                    City
+                </td>
+                <td>
+                    Address
+                </td>
+                <td>
+                    BankName
+                </td>
+                <td>
+                    BankAddress
+                </td>
+                <td>
+                    BankBranch
+                </td>
+                <td>
+                    BankAccountNumber
+                </td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.EmployeeList)
+            {
+                <tr>
+                    <td>@item.EmployeeID</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.City</td>
+                    <td>@item.Address</td>
+                    <td>@item.BankName</td>
+                    <td>@item.BankAddress</td>
+                    <td>@item.BankBranch</td>
+                    <td>@item.BankAccountNumber</td>
+
+                    @*<td><a href="/Employee/Edit/@item.EmployeeID">View</a></td>*@
+
+                    <td><a href="/Employee/Edit/@item.EmployeeID">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+else{
+    <div class="container">
+        <p>No Employee were not found</p>
+    </div>
+}
+
+
+<form method="post">
+
+
+<!-- Modal for adding new EmployeeLog record-->
+<div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+        <div class="mb-3">
+            <label for="employeeID" class="form-label">EmployeeID</label>
+            <input type="text" class="form-control" id="employeeID" asp-for="Employee.EmployeeID" > @*name="employeeID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" asp-for="Employee.FirstName"> @*name="FirstName"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" asp-for="Employee.LastName"> @*name="LastName"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" asp-for="Employee.PhoneNumber"> @*name="PhoneNumber"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" asp-for="Employee.City"> @*name="city"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" asp-for="Employee.Address"> @*name="Address"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input type="text" class="form-control" id="bankName" asp-for="Employee.BankName"> @*name="BankName"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankAddress" class="form-label">Bank Address</label>
+            <input type="text" class="form-control" id="bankAddress" asp-for="Employee.BankAddress"> @*name="BankAddress"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankBranch" class="form-label">Bank Branch</label>
+            <input type="text" class="form-control" id="bankBranch" asp-for="Employee.BankBranch"> @*name="BankBranch"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankAccountNumber" class="form-label">Bank Account Number</label>
+            <input type="text" class="form-control" id="bankAccountNumber" asp-for="Employee.BankAccountNumber"> @*name="BankAccountNumber"*@
+        </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>

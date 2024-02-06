@@ -1,0 +1,87 @@
+﻿@* "{ID:int}" this called rout parameter, the defualt type of routing parameter is string *@
+@page "{EmployeeID}" 
+@model WebApp.Pages.EmployeeWorkLog.EditModel
+@{
+}
+
+@* bg-secondary = this is color of the title, dark
+                                            bg-opacity-10 = this cuase it to bee more light
+                                            mb-2 = margin buttom - to have space on bottom of the div
+                                            *@
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> 
+ <div class="container">
+        <h1>Edit</h1>
+    </div>
+</div>
+
+
+@*@{
+    var MessageDescription = (string)ViewData["MessageDescription"];
+}
+
+@if (!string.IsNullOrWhiteSpace(MessageDescription))
+{
+    <div class="container mb-5">
+        <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+            @Html.Raw(MessageDescription)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}*@
+
+<partial name="_Notification"></partial>
+
+@if(Model.EmployeeWorkLogItem != null)
+{
+    <div class="container">
+    <form method="post">
+        <div class="mb-3">
+            <label for="employeeID" class="form-label">EmployeeID</label>
+            <input type="text" class="form-control" id="employeeID" asp-for="EmployeeWorkLogItem.EmployeeID" readonly > @*name="employeeID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="projectSiteID" class="form-label">Project Site ID</label>
+            <input type="text" class="form-control" id="projectSiteID" asp-for="EmployeeWorkLogItem.ProjectSiteID"> @*name="projectSiteID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="workingStartDate" class="form-label">Working Start Date</label>
+            <input type="date" class="form-control" id="workingStartDate" asp-for="EmployeeWorkLogItem.WorkingStartDate"> @*name="publishedDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="workingEndDate" class="form-label">Working End Date</label>
+            <input type="date" class="form-control" id="workingEndDate" asp-for="EmployeeWorkLogItem.WorkingEndDate"> @*name="workingEndDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="siteActivityID" class="form-label">SiteActivityID</label>
+            <input type="text" class="form-control" id="siteActivityID" asp-for="EmployeeWorkLogItem.SiteActivityID"> @*name="siteActivityID"*@
+        </div>
+
+         <div class="mb-3">
+                <label for="remarks" class="form-label">Remarks</label>
+                <textarea class="form-control" id="remarks" asp-for="EmployeeWorkLogItem.Remarks"></textarea> @*name="Remarks"*@
+           </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <button class="btn btn-primary" type="submit" asp-page-handler="Edit">Submit</button> @* when the button is clicked, the form will be submitted, on the code behind .cs file, the event OnPost() will be invoked *@
+            <button class="btn btn-danger" type="submit"  asp-page-handler="Delete">Delete</button>
+        </div>
+
+
+    </form>
+    </div>
+}
+else{
+    <div class="container">
+        <p>EmployeeWorkLogItem not found</p>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        var editor = new FroalaEditor('#remarks');// content is the id of the textarea   
+    </script>
+}

@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "06e4f063-033b-410f-9729-956a0a83221e": {
+      "ProjectGuid": "06e4f063-033b-410f-9729-956a0a83221e",
+      "DisplayName": "DataAccessLibrary",
+      "ColorIndex": 0
+    },
+    "ced24296-adc2-4c89-aa2f-f37c8e955dca": {
+      "ProjectGuid": "ced24296-adc2-4c89-aa2f-f37c8e955dca",
+      "DisplayName": "WebAPI",
+      "ColorIndex": 1
+    },
+    "be066482-04d4-45dc-8796-01566391d852": {
+      "ProjectGuid": "be066482-04d4-45dc-8796-01566391d852",
+      "DisplayName": "WebAPI",
+      "ColorIndex": 2
+    },
+    "529ddf3b-c532-42ba-a729-05d1341643f8": {
+      "ProjectGuid": "529ddf3b-c532-42ba-a729-05d1341643f8",
+      "DisplayName": "WebApplication",
+      "ColorIndex": 3
+    },
+    "90bb091b-e014-477f-8ae0-335a8b21190f": {
+      "ProjectGuid": "90bb091b-e014-477f-8ae0-335a8b21190f",
+      "DisplayName": "WebApp",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 5
+}

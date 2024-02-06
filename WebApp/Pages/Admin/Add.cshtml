@@ -1,0 +1,75 @@
+﻿@page
+@model WebApp.Pages.Admin.AddModel
+@{
+}
+@*
+ASP.NET 6 Razor Pages CRUD - .NET 6 Razor Pages Tutorial - ASP.NET Core Web App (Bootsrap + web application)
+https://www.youtube.com/watch?v=3gthVb11Juc
+
+    ---bootstrap----
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+*@
+
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> @* bg-secondary = this is color of the title, dark
+                                            bg-opacity-10 = this cuase it to bee more light
+                                            mb-2 = margin buttom - to have space on bottom of the div
+                                            *@
+    <div class="container">
+        <h1>Add EmployeeWorkLog</h1>
+    </div>
+</div>
+
+<div>
+    <div class="container">
+        <form method="post">
+            <div class="mb-3">
+                <label for="heading" class="form-label">Heading</label>
+                <input type="text" class="form-control" id="heading" asp-for="AdminAdd.Heading" > @*name="heading"*@
+           </div>
+
+           <div class="mb-3">
+                <label for="pageTitle" class="form-label">Page Title</label>
+                <input type="text" class="form-control" id="pageTitle" asp-for="AdminAdd.PageTitle"> @*name="pageTitle"*@
+           </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" asp-for="AdminAdd.Content"></textarea> @*name="content"*@
+           </div>
+
+           <div class="mb-3">
+                <label for="shortDescription" class="form-label">Short Description</label>
+                <input type="text" class="form-control" id="shortDescription" asp-for="AdminAdd.ShortDescription"> @*name="shortDescription"*@
+           </div>
+
+           <div class="mb-3">
+                <label for="featuredImageURL" class="form-label">Featured Image URL</label>
+                <input type="text" class="form-control" id="featuredImageURL" asp-for="AdminAdd.FeaturedImageURL"> @*name="featuredImageURL"*@
+           </div>
+
+           <div class="mb-3">
+                <label for="publishedDate" class="form-label">Published Date</label>
+                <input type="date" class="form-control" id="publishedDate" asp-for="AdminAdd.PublishedDate"> @*name="publishedDate"*@
+           </div>
+
+           <div class="form-check" class="mb-3">
+              <input class="form-check-input" type="checkbox" id="isVisiable" asp-for="AdminAdd.IsVisiable" > @*name="isVisiable"*@
+              <label class="form-check-label" for="isVisiable">
+                Is Visiable dikla
+              </label>
+            </div>
+
+              <div class="mb-3">
+               <button class="btn btn-primary" type="submit">Submit</button> @* when the button is clicked, the form will be submitted, on the code behind .cs file, the event OnPost() will be invoked *@
+           </div>
+           
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var editor = new FroalaEditor('#content');// content is the id of the textarea   
+    </script>
+}

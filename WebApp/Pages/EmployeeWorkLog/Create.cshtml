@@ -1,0 +1,49 @@
+﻿@page
+@model WebApp.Pages.EmployeeWorkLog.CreateModel
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> @* bg-secondary = this is color of the title, dark
+                                            bg-opacity-10 = this cuase it to bee more light
+                                            mb-2 = margin buttom - to have space on bottom of the div
+                                            *@
+ <div class="container">
+        <h1>Add EmployeeWorkLog</h1>
+    </div>
+</div>
+
+<div class="container">
+    <form method="post">
+        <div class="mb-3">
+            <label for="employeeID" class="form-label">EmployeeID</label>
+            <input type="text" class="form-control" id="employeeID" asp-for="EmployeeWorkLog.EmployeeID" > @*name="employeeID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="projectSiteID" class="form-label">Project Site ID</label>
+            <input type="text" class="form-control" id="projectSiteID" asp-for="EmployeeWorkLog.ProjectSiteID"> @*name="projectSiteID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="workingStartDate" class="form-label">Working Start Date</label>
+            <input type="date" class="form-control" id="workingStartDate" asp-for="EmployeeWorkLog.WorkingStartDate"> @*name="publishedDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="workingEndDate" class="form-label">Working End Date</label>
+            <input type="date" class="form-control" id="workingEndDate" asp-for="EmployeeWorkLog.WorkingEndDate"> @*name="workingEndDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="siteActivityID" class="form-label">SiteActivityID</label>
+            <input type="text" class="form-control" id="siteActivityID" asp-for="EmployeeWorkLog.SiteActivityID"> @*name="siteActivityID"*@
+        </div>
+
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Submit</button> @* when the button is clicked, the form will be submitted, on the code behind .cs file, the event OnPost() will be invoked *@
+        </div>
+
+
+    </form>
+</div>
+

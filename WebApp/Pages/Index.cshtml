@@ -1,0 +1,68 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@* 
+    hero section, a big section that have images , it is an introduction to the web site, shows what is the web site is about 
+    px-4 => padding on x axis in 4 pixels
+    py-5 => padding on y axis in 5 pixels
+
+
+    the images are tooked from website: https://www.pexels.com/
+*@
+<div class="container col-xx-8 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+        <div class="col-12 col-lg-6">
+            <h1 class="dispaly-5 fw-bold lh-1 mb-3">
+                DMC - Managment Tool
+            </h1>
+            <p>DMC ManagmentTool it is an employee managment tool that enable a vast range of information about the company anf the employees
+                like Employee details, employee salary,  daily working log etc.
+                For more information please visit our website 
+                www.d-m-c.co.il
+            </p>
+        </div> 
+        <div class="col6 col-lg-3">
+            <img src="https://media.istockphoto.com/id/981339754/photo/silhouette-of-engineer-and-construction-team-working-at-site-over-blurred-background-sunset.jpg?b=1&s=612x612&w=0&k=20&c=5TNaaHXK4HaMg81FWc85KtnyvAGbbjU4VJc_EYyfAcg="
+            class="d-block mx-lg-auto img-fluid" width="400px"></img>
+
+            
+        </div> 
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 text-center">
+                @if (Model.ProjectSitesList != null && Model.ProjectSitesList.Any())
+                {
+                    foreach (var projectSite in Model.ProjectSitesList)   {
+                     @*  mb-5 = margin buttom of 5  *@
+                     @*  bg-light = BackgroundService color light *@
+                     @* alt = all text *@
+                     @* d-block = Display block *@
+                     @*  px-4 = padding x axis of 4 *@
+                        <div class="mb-5 bg-light box-shadow">
+                            <img src="@projectSite.ProjectSite.SiteImageURL" alt="@projectSite.ProjectSite.SiteName" class="mb-2 d-block img-fluid">
+                            <div class="px-4 py-4">
+                                <h2 class="mb-1">@projectSite.ProjectSite.SiteName</h2>
+                                <p>
+                                    Address: @projectSite.ProjectSite.SiteAddress
+                                    <br>
+                                    Status: @projectSite.StatusText<br>
+                                    @projectSite.ProjectSite.StartDate.Value.ToShortDateString() - @projectSite.ProjectSite.EndDate.Value.ToShortDateString()
+                                </p>
+                                <p class="mb-2">@projectSite.ProjectSite.Remarks</p>
+                                <a href="#" class="btn btn-dark">Read More</a>
+                            </div>
+                        </div>
+                    }
+                }
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,141 @@
+﻿@page
+@model WebApp.Pages.EmployeeWorkLog.ListModel
+@{
+}
+
+@*
+    ---bootstrap----
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+*@
+
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> @* bg-secondary = this is color of the title, dark
+                                            bg-opacity-10 = this cuase it to bee more light
+                                            mb-2 = margin buttom - to have space on bottom of the div
+                                            *@
+ <div class="container">
+        <h1>View All</h1>
+    </div>
+</div>
+
+@*@{
+    var MessageDescription = (string)ViewData["MessageDescription"];
+}
+
+@if (!string.IsNullOrWhiteSpace(MessageDescription))
+{
+    <div class="container mb-5">
+        <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+            @Html.Raw(MessageDescription)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}
+*@
+
+<partial name="_Notification"></partial>
+
+@if(Model.EmployeeWorkLogList != null && Model.EmployeeWorkLogList.Any())
+{
+    <div class="container">
+
+        <div class="mb-3 d-flex justify-content-end">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addEmployeeWorkLog">
+              Add
+            </button>
+         </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    Employee Name
+                </td>
+                <td>
+                    Project Site
+                </td>
+                <td>
+                   Working Start Date
+                </td>
+                <td>
+                    Working End Date
+                </td>
+                <td>
+                    Site Activity
+                </td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.EmployeeWorkLogList)
+            {
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.ProjectSiteName</td>
+                    <td>@item.EmployeeWorkLog.WorkingStartDate</td>
+                    <td>@item.EmployeeWorkLog.WorkingEndDate</td>
+                    <td>@item.SiteActivityName</td>
+                    <td><a href="/EmployeeWorkLog/Edit/@item.EmployeeWorkLog.EmployeeID">View</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+else{
+    <div class="container">
+        <p>No EmployeeWorkLog were not found</p>
+    </div>
+}
+
+
+<form method="post">
+
+
+<!-- Modal for adding new EmployeeLog record-->
+<div class="modal fade" id="addEmployeeWorkLog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Record</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+        <div class="mb-3">
+            <label for="employeeID" class="form-label">EmployeeID</label>
+            <input type="text" class="form-control" id="employeeID" asp-for="EmployeeWorkLog.EmployeeID" > @*name="employeeID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="projectSiteID" class="form-label">Project Site ID</label>
+            <input type="text" class="form-control" id="projectSiteID" asp-for="EmployeeWorkLog.ProjectSiteID"> @*name="projectSiteID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="workingStartDate" class="form-label">Working Start Date</label>
+            <input type="date" class="form-control" id="workingStartDate" asp-for="EmployeeWorkLog.WorkingStartDate"> @*name="publishedDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="workingEndDate" class="form-label">Working End Date</label>
+            <input type="date" class="form-control" id="workingEndDate" asp-for="EmployeeWorkLog.WorkingEndDate"> @*name="workingEndDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="siteActivityID" class="form-label">SiteActivityID</label>
+            <input type="text" class="form-control" id="siteActivityID" asp-for="EmployeeWorkLog.SiteActivityID"> @*name="siteActivityID"*@
+        </div>
+
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-dark">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>

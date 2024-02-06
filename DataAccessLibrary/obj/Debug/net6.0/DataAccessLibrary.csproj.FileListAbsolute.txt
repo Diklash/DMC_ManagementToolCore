@@ -1,0 +1,12 @@
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\bin\Debug\net6.0\DataAccessLibrary.deps.json
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\bin\Debug\net6.0\DataAccessLibrary.dll
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\bin\Debug\net6.0\ref\DataAccessLibrary.dll
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\bin\Debug\net6.0\DataAccessLibrary.pdb
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.AssemblyInfoInputs.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.AssemblyInfo.cs
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.csproj.CoreCompileInputs.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.dll
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\ref\DataAccessLibrary.dll
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.pdb
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\DataAccessLibrary\obj\Debug\net6.0\DataAccessLibrary.csproj.AssemblyReference.cache

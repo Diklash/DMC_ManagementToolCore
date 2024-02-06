@@ -1,0 +1,144 @@
+﻿@page "{EmployeeID}" 
+@model WebApp.Pages.Employee.EditModel
+@{
+}
+@* bg-secondary = this is color of the title, dark
+                                            bg-opacity-10 = this cuase it to bee more light
+                                            mb-2 = margin buttom - to have space on bottom of the div
+                                            *@
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> 
+ <div class="container">
+        <h1>Edit</h1>
+    </div>
+</div>
+
+<partial name="_Notification"></partial>
+
+@if(Model.Employee != null)
+{
+    <div class="container">
+    <form method="post">
+
+
+        <div class="mb-3">
+             <div class="row">
+                <div class="col-12 text-center">
+                        <img src="@Model.Employee.EmployeeImageURL" id="employeeImageDisplay" style=" width: 150px"> @*display:none;*@
+                        <p>@Model.Employee.EmployeeImageURL</p>
+                        @* <input type="hidden" asp-for="Employee.ID" />*@
+                         @Html.HiddenFor(model => model.Employee.ID)
+                         @Html.HiddenFor(model => model.Employee.SecondName)
+                         @Html.HiddenFor(model => model.Employee.FatherName)
+
+                </div>
+             </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageUpload" class="form-label">Image Upload</label>
+            <input type="file" class="form-control" id="imageUpload" asp-for="UploadImage"> @*name="employeeID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="employeeID" class="form-label">EmployeeID</label>
+            <input type="text" class="form-control" id="employeeID" asp-for="Employee.EmployeeID" readonly > @*name="employeeID"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="firstName" class="form-label">FirstName</label>
+            <input type="text" class="form-control" id="firstName" asp-for="Employee.FirstName"> @*name="FirstName"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" asp-for="Employee.LastName"> @*name="publishedDate"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" asp-for="Employee.PhoneNumber"> @*name="PhoneNumber"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" asp-for="Employee.City"> @*name="City"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" asp-for="Employee.Address"> @*name="Address"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input type="text" class="form-control" id="bankName" asp-for="Employee.BankName"> @*name="BankName"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankAddress" class="form-label">Bank Address</label>
+            <input type="text" class="form-control" id="bankAddress" asp-for="Employee.BankAddress"> @*name="BankAddress"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankBranch" class="form-label">Bank Branch</label>
+            <input type="text" class="form-control" id="bankBranch" asp-for="Employee.BankBranch"> @*name="BankBranch"*@
+        </div>
+
+        <div class="mb-3">
+            <label for="bankAccountNumber" class="form-label">Bank Account Number</label>
+            <input type="text" class="form-control" id="bankAccountNumber" asp-for="Employee.BankAccountNumber"> @*name="BankAccountNumber"*@
+        </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <button class="btn btn-primary" type="submit" asp-page-handler="Edit">Submit</button> @* when the button is clicked, the form will be submitted, on the code behind .cs file, the event OnPost() will be invoked *@
+            <button class="btn btn-danger" type="submit"  asp-page-handler="Delete">Delete</button>
+        </div>
+
+
+    </form>
+    </div>
+}
+else{
+    <div class="container">
+        <p>Employee not found</p>
+    </div>
+}
+
+@section Scripts{
+    <script>
+       //event listener
+          
+       const imageUploadElement = document.getElementById('imageUpload');
+       //const employeeImageURL = document.getElementById('employeeImageURL');
+       const employeeImageDisplay = document.getElementById('employeeImageDisplay');
+
+       
+       
+
+       function uploadImageFunc(e){
+          
+
+          var apiUrl = "@Model.ImageUrlAPI" ;
+
+          let data = new FormData();
+          data.append('file', e.target.files[0]);
+       
+          fetch(apiUrl, {
+            method: 'POST',
+            body:data
+          })
+          .then(response => response.json())
+          .then(result => 
+              {
+                  //employeeImageURL.value = result.link;
+                  employeeImageDisplay.style.display = 'block';
+                  employeeImageDisplay.src = result.link;
+              }  /*console.log(result)*/
+          )
+          .catch(error => console.error('Error:', error));
+          //this is a promise (A promise in JavaScript is an object that represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.)
+       }
+      
+       imageUploadElement.addEventListener('change', uploadImageFunc);
+    </script>
+}

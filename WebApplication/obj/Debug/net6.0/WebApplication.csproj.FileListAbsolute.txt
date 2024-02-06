@@ -1,0 +1,9 @@
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.csproj.AssemblyReference.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.AssemblyInfoInputs.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.AssemblyInfo.cs
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.csproj.CoreCompileInputs.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.MvcApplicationPartsAssemblyInfo.cs
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.RazorAssemblyInfo.cache
+C:\Projects\DMC_ManagmentTool_NetCoreSolution\WebApplication\obj\Debug\net6.0\WebApplication.RazorAssemblyInfo.cs
