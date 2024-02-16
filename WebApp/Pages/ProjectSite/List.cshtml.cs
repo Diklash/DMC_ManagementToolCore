@@ -1,10 +1,12 @@
+using DataAccessLibrary.DataTransferObjects;
+using DataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System.Text;
 using WebApp.Models.ViewModels;
 
-namespace WebApp.Pages.EmployeeWorkLog
+namespace WebApp.Pages.ProjectSite
 {
     public class ListModel : PageModel
     {
@@ -12,40 +14,34 @@ namespace WebApp.Pages.EmployeeWorkLog
         private readonly string _apiBaseUrl;
 
         [BindProperty]
-        public List<DataAccessLibrary.DataTransferObjects.EmployeeWorkLogDTO> EmployeeWorkLogList { get; set; }
+        public List<ProjectSiteDTO> ProjectSitesList { get; set; }
 
         [BindProperty]
-        public DataAccessLibrary.Models.EmployeeWorkLog EmployeeWorkLog { get; set; }
+        public ProjectSiteDTO ProjectSite { get; set; }
 
         public ListModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "EmployeeWorkLog";
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "ProjectSite";
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            //Check notification that comes from another pages
-            //var messageDescription = (string)TempData["MessageDescription"];
-            //if (!string.IsNullOrWhiteSpace(messageDescription))
-            //{
-            //    ViewData["MessageDescription"] = messageDescription;
-            //}
-
-            //we used generic notification
             
+            //we used generic notification
+
             var notificationJson = TempData["Notification"];
             if (notificationJson != null)
             {
                 ViewData["Notification"] = JsonConvert.DeserializeObject<Models.ViewModels.Notification>(notificationJson.ToString());
             }
-            
+
             //call to Get function
             var response = await _httpClient.GetAsync(_apiBaseUrl);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                EmployeeWorkLogList = JsonConvert.DeserializeObject<List<DataAccessLibrary.DataTransferObjects.EmployeeWorkLogDTO>> (content);
+                ProjectSitesList = JsonConvert.DeserializeObject<List<ProjectSiteDTO>>(content);
             }
             else
             {
@@ -57,7 +53,7 @@ namespace WebApp.Pages.EmployeeWorkLog
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var json = JsonConvert.SerializeObject(EmployeeWorkLog);
+            var json = JsonConvert.SerializeObject(ProjectSite);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync(_apiBaseUrl, content);

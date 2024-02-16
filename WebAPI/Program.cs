@@ -30,6 +30,8 @@ builder.Services.AddScoped<IEmployeeRepository>(f => new EmployeeRepository(conn
 builder.Services.AddScoped<IEmployeeWorkLogRepository>(f => new EmployeeWorkLogRepository(connectionString));
 builder.Services.AddScoped<IProjectSiteRepository>(f => new ProjectSiteRepository(connectionString));
 //builder.Services.AddScoped<IAuthenticationRepository>(f => new AuthenticationRepository(connectionString));
+builder.Services.AddScoped<ISiteActivityRepository>(f => new SiteActivityRepository(connectionString));
+
 
 //builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 //    //.AddUserStore<UserStore>()

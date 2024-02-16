@@ -4,38 +4,37 @@ using Newtonsoft.Json;
 using System.Text;
 using WebApp.Models.ViewModels;
 
-namespace WebApp.Pages.Employee
+namespace WebApp.Pages.ProjectSite
 {
     public class EditModel : PageModel
     {
         private readonly HttpClient _httpClient; //inject the HttpClient using Ctor
         private readonly string _apiBaseUrl;
 
-        [BindProperty]
-        public DataAccessLibrary.Models.Employee Employee { get; set; }
-
 
         [BindProperty]
-        public IFormFile UploadImage { get; set; }
+        public DataAccessLibrary.DataTransferObjects.ProjectSiteDTO ProjectSite { get; set; }
 
         [BindProperty]
-        public string ImageUrlAPI { get; set; }
+        public List<DataAccessLibrary.DataTransferObjects.ProjectSiteDTO> ProjectSitesList { get; set; }
 
         public EditModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "Employee";
-            ImageUrlAPI = configuration["ApiSettings:WebApiAddress"] + "Images";
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "ProjectSite";
         }
 
-        public async Task<IActionResult> OnGetAsync(string EmployeeID)
+
+        public async Task<IActionResult> OnGetAsync(string ProjectSiteID)
         {
             //call to Get function
-            var response = await _httpClient.GetAsync(_apiBaseUrl + "/" + EmployeeID);
+            var response = await _httpClient.GetAsync(_apiBaseUrl + "/" + ProjectSiteID);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                Employee = JsonConvert.DeserializeObject<DataAccessLibrary.Models.Employee>(content);
+                ProjectSite = JsonConvert.DeserializeObject<DataAccessLibrary.DataTransferObjects.ProjectSiteDTO>(content);
+
+                GetProjectSiteList();
             }
             else
             {
@@ -47,18 +46,12 @@ namespace WebApp.Pages.Employee
 
         public async Task<IActionResult> OnPostEditAsync() //when the form submitted, the values of the form will come to this function, we can get all the values that has name
         {
-            var json = JsonConvert.SerializeObject(Employee);
+            var json = JsonConvert.SerializeObject(ProjectSite.ProjectSite);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var updateResponse = await _httpClient.PutAsync(_apiBaseUrl, content);
             if (updateResponse.IsSuccessStatusCode)// Handle success
             {
-                //var responseContent = await updateResponse.Content.ReadAsStringAsync();
-                //return RedirectToPage("/EmployeeWorkLog/List");
-
-                //instead of redirect to another page , we will show success message on the screen.  ViewData is container for passing data between PageModel(.cs) and ViewModel(.cshtml) 
-                //ViewData["MessageDescription"] = "Record was seccessfuly saved";
-
                 //we want to have generic notifications
                 var notifocation = new Notification
                 {
@@ -69,9 +62,21 @@ namespace WebApp.Pages.Employee
                 TempData["Notification"] = JsonConvert.SerializeObject(notifocation); //we need to serialize it becuse we pass it between diffrent pages (another page)
             }
 
-            //}
-            //}
-            return RedirectToPage("/Employee/List");
+            return RedirectToPage("/ProjectSite/List");
+        }
+
+        private async Task GetProjectSiteList()
+        {
+            var responseProjectSite = await _httpClient.GetAsync(_apiBaseUrl);
+            if (responseProjectSite.IsSuccessStatusCode)
+            {
+                var contentProjectSite = await responseProjectSite.Content.ReadAsStringAsync();
+                ProjectSitesList = JsonConvert.DeserializeObject<List<DataAccessLibrary.DataTransferObjects.ProjectSiteDTO>>(contentProjectSite);
+
+                DataAccessLibrary.DataTransferObjects.ProjectSiteDTO projectSiteItem = ProjectSitesList.Find(x => x.ProjectSite.ID == ProjectSite.ProjectSite.ID);
+
+                ProjectSite = projectSiteItem;
+            }
         }
     }
 }

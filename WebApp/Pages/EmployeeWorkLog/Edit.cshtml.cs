@@ -9,19 +9,25 @@ namespace WebApp.Pages.EmployeeWorkLog
     public class EditModel : PageModel
     {
         private readonly HttpClient _httpClient; //inject the HttpClient using Ctor
-        private readonly string _apiBaseUrl;
+        private readonly string _apiBaseUrl, _apiBaseUrlProjectSite;
 
         [BindProperty]
         public DataAccessLibrary.Models.EmployeeWorkLog EmployeeWorkLogItem { get; set; }
 
+        [BindProperty]
+        public List<DataAccessLibrary.DataTransferObjects.ProjectSiteDTO> ProjectSitesList { get; set; }
+
+        [BindProperty]
+        public DataAccessLibrary.DataTransferObjects.ProjectSiteDTO ProjectSite { get; set; }
 
         public EditModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:EmployeeWorkLog"];
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "EmployeeWorkLog";
+            _apiBaseUrlProjectSite = configuration["ApiSettings:WebApiAddress"] + "ProjectSite";
         }
+        public string SelectedItem { get; set; }
 
-       
         public async Task<IActionResult> OnGetAsync(string EmployeeID)
         {
             //call to Get function
@@ -31,6 +37,7 @@ namespace WebApp.Pages.EmployeeWorkLog
                 var content = await response.Content.ReadAsStringAsync();
                 EmployeeWorkLogItem = JsonConvert.DeserializeObject<DataAccessLibrary.Models.EmployeeWorkLog>(content);
 
+                await GetProjectSiteList();
             }
             else
             {
@@ -40,6 +47,21 @@ namespace WebApp.Pages.EmployeeWorkLog
             return Page();
         }
 
+
+        private async Task GetProjectSiteList()
+        {
+            var responseProjectSite = await _httpClient.GetAsync(_apiBaseUrlProjectSite);
+            if (responseProjectSite.IsSuccessStatusCode)
+            {
+                var contentProjectSite = await responseProjectSite.Content.ReadAsStringAsync();
+                ProjectSitesList = JsonConvert.DeserializeObject<List<DataAccessLibrary.DataTransferObjects.ProjectSiteDTO>>(contentProjectSite);
+
+                DataAccessLibrary.DataTransferObjects.ProjectSiteDTO projectSiteItem = ProjectSitesList.Find(x => x.ProjectSite.ID == EmployeeWorkLogItem.ProjectSiteID);
+
+                ProjectSite = projectSiteItem;
+
+            }
+        }
         public async Task<IActionResult> OnPostEditAsync() //when the form submitted, the values of the form will come to this function, we can get all the values that has name
         {
             //2. property binding

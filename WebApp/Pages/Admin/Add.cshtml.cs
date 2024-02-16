@@ -19,7 +19,8 @@ namespace WebApp.Pages.Admin
         public AddModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:EmployeeWorkLog"];
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "EmployeeWorkLog";
+            //_apiBaseUrl = configuration["ApiSettings:EmployeeWorkLog"];
         }
 
         public void OnGet()
