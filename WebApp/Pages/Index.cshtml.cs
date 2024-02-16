@@ -18,7 +18,7 @@ namespace WebApp.Pages
         {
             _logger = logger;
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:ProjectSite"];
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "ProjectSite";
         }
 
         public async Task<IActionResult> OnGetAsync()

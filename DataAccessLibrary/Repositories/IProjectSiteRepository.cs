@@ -11,5 +11,15 @@ namespace DataAccessLibrary.Repositories
     public interface IProjectSiteRepository
     {
         Task<IEnumerable<ProjectSiteDTO>> Get();
+
+        Task<ProjectSites> Get(ProjectSites item);
+
+        Task<ProjectSiteDTO?> Get(int ID);
+
+        Task Create(ProjectSites item);
+
+        Task Update(ProjectSites item);
+
+        Task<IEnumerable<ProjectStatus>> GetProjectStatusList();
     }
 }

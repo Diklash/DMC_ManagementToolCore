@@ -1,4 +1,5 @@
 ﻿@* "{ID:int}" this called rout parameter, the defualt type of routing parameter is string *@
+
 @page "{EmployeeID}" 
 @model WebApp.Pages.EmployeeWorkLog.EditModel
 @{
@@ -41,8 +42,17 @@
         </div>
 
         <div class="mb-3">
-            <label for="projectSiteID" class="form-label">Project Site ID</label>
-            <input type="text" class="form-control" id="projectSiteID" asp-for="EmployeeWorkLogItem.ProjectSiteID"> @*name="projectSiteID"*@
+            <label for="projectSiteID" class="form-label">Site Name</label>
+          @*  <input type="text" class="form-control" id="projectSiteID" asp-for="ProjectSite.ProjectSite.SiteName"> name="projectSiteID"*@
+
+            @Html.DropDownListFor(
+                model => model.EmployeeWorkLogItem.ProjectSiteID, 
+                new SelectList(Model.ProjectSitesList, "ProjectSite.ID", "ProjectSite.SiteName"), 
+                "Choose an option",
+                new { @class = "form-control" }
+            )
+
+
         </div>
 
         <div class="mb-3">

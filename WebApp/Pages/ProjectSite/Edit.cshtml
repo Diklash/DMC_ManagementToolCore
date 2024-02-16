@@ -1,0 +1,93 @@
+﻿@page "{ProjectSiteID}" 
+@model WebApp.Pages.ProjectSite.EditModel
+@{
+}
+<div class="bg-secondary bg-opacity-10 py-2 mb-5"> 
+ <div class="container">
+        <h1>Edit</h1>
+    </div>
+</div>
+
+<partial name="_Notification"></partial>
+
+@if(Model.ProjectSite != null)
+{
+    <div class="container">
+    <form method="post">
+
+        <div class="mb-3">
+            <img src="@Model.ProjectSite.ProjectSite.SiteImageURL" alt="@Model.ProjectSite.ProjectSite.SiteImageURL" class="mb-2 d-block img-fluid" width="400px"> </img>
+        </div>
+
+       @* <div class="mb-3">
+            <label for="projectSiteID" class="form-label">Site Name</label>
+
+            @Html.DropDownListFor(
+                model => model.ProjectSite.ProjectSite.ID, 
+                new SelectList(Model.ProjectSitesList, "ProjectSite.ID", "ProjectSite.SiteName"), 
+                "Choose an option",
+                new { @class = "form-control" }
+            )
+        </div>*@
+
+        <div class="mb-3">
+            <label for="siteName" class="form-label">SiteName</label>
+            <input type="text" class="form-control" id="siteName" asp-for="ProjectSite.ProjectSite.SiteName"> 
+        </div>
+
+         <div class="mb-3">
+            <label for="siteAddress" class="form-label">SiteAddress</label>
+            <input type="text" class="form-control" id="siteAddress" asp-for="ProjectSite.ProjectSite.SiteAddress">
+        </div>
+
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate" asp-for="ProjectSite.ProjectSite.StartDate"> 
+        </div>
+
+        <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate" asp-for="ProjectSite.ProjectSite.EndDate"> 
+        </div>
+
+        <div class="mb-3">
+             <label for="remarks" class="form-label">Remarks</label>
+             <textarea class="form-control" id="remarks" asp-for="ProjectSite.ProjectSite.Remarks"></textarea> 
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+
+            @Html.DropDownListFor(
+                model => model.ProjectSite.ProjectSite.StatusID, 
+                new SelectList(Model.ProjectSitesList, "ProjectSite.StatusID", "StatusText"), 
+                "Choose an option",
+                new { @class = "form-control" }
+            )
+
+        </div>
+
+        <div class="mb-3">
+            <label for="financialAmount" class="form-label">Financial Amount</label>
+            <input type="text" class="form-control" id="financialAmount" asp-for="ProjectSite.ProjectSite.FinancialAmount"> 
+        </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <button class="btn btn-primary" type="submit" asp-page-handler="Edit">Submit</button> @* when the button is clicked, the form will be submitted, on the code behind .cs file, the event OnPost() will be invoked *@
+            <button class="btn btn-danger" type="submit"  asp-page-handler="Delete">Delete</button>
+        </div>
+
+    </form>
+    </div>
+}
+else{
+    <div class="container">
+        <p>ProjectSite not found</p>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        var editor = new FroalaEditor('#remarks');// content is the id of the textarea   
+    </script>
+}

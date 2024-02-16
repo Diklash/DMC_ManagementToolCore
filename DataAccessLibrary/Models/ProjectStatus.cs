@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Models
 {
-    [Table("Employee")]
+    [Table("ProjectStatus")]
     public class ProjectStatus
     {
         [Key]

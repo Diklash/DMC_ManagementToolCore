@@ -20,7 +20,7 @@ namespace WebApp.Pages.EmployeeWorkLog
         public CreateModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:EmployeeWorkLog"];
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "EmployeeWorkLog";
         }
         public void OnGet()
         {

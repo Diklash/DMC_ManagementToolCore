@@ -171,7 +171,6 @@ namespace DataAccessLibrary.Repositories
         {
             bool wasUpdated;
 
-
             EmployeeWorkLog existingEmployeeWorkLog = await Get(employee);
 
             if (existingEmployeeWorkLog != null)

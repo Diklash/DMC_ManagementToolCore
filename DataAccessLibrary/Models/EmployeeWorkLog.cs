@@ -23,6 +23,6 @@ namespace DataAccessLibrary.Models
 
         public int? SiteActivityID { get; set; }
 
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
     }
 }

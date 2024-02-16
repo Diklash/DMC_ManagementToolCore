@@ -14,10 +14,9 @@ namespace WebAPI.Controllers
     {
         private readonly IEmployeeRepository employeeRepository;
       
-        public EmployeeController(IEmployeeRepository employeeRepository/*, IEmployeeProcessor employeeProcessor*/) //Dependency injection
+        public EmployeeController(IEmployeeRepository employeeRepository) //Dependency injection
         {
             this.employeeRepository = employeeRepository;
-            //this.employeeProcessor = employeeProcessor;
         }
       
         [HttpGet]

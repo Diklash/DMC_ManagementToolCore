@@ -21,7 +21,7 @@ namespace WebApp.Pages.Employee
         public ListModel(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiBaseUrl = configuration["ApiSettings:Employee"];
+            _apiBaseUrl = configuration["ApiSettings:WebApiAddress"] + "Employee";
         }
 
         public async Task<IActionResult> OnGetAsync()
